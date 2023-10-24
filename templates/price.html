@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} OrionScan | Pricing {% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<main class="flex grow flex-col justify-between">
+    <div class="bg-white">
+        {% include 'price_plan.html' %}
+        {% include 'price_frequent_section.html' %}
+        {% include 'footer.html' %}
+    </div>
+</main>
+
+{% endblock %}

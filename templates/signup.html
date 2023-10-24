@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} OrionScan | Signup {% endblock %}
+{% block script %}
+<script src="{% static 'assests/static/js/signup.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<main class="flex grow flex-col justify-between">
+    <div class="bg-white">
+        <!-- if token param exists -->
+        {% if token %}
+        {% include 'signup_with_token.html' %}
+        {% else %}
+        {% include 'signup_content.html' %}
+        {% endif %}
+        {% include 'footer.html' %}
+    </div>
+</main>
+
+<script>
+    sendMailUrl = "{% url 'signup:signupWithEmail' %}"
+    signupUrl = "{% url 'signup:signupWithToken' %}"
+</script>
+
+{% endblock %}

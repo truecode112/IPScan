@@ -1,0 +1,36 @@
+{% load static %}
+
+<main class="grow flex flex-col">
+    <div class="px-2 sm:px-6 grow">
+        <div class="flex items-center pl-4">
+            <h1>Scans</h1>
+            <div class="flex items-end justify-end py-2">
+                <button class="border border-sky-600 text-sky-700 shadow shadow-slate-300 bg-white hover:bg-sky-100 hover:text-sky-600 block rounded-md py-2 px-4 mx-2 text-sm">Add Targets</button>
+                <button class="border border-sky-700 bg-sky-600 hover:bg-sky-500 text-white text-sm sm:text-base shadow shadow-slate-300 font-bold block rounded-md py-2 px-4 ml sm:ml-2 sm:mt-0 whitespace-nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-4 sm:h-6 inline-block mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>New Scan</button>
+            </div>
+        </div>
+        <div class="bg-white rounded-md shadow-md p-6">
+            <div class="grid grid-cols-2">
+                <div class="grow"></div>
+                <div class="flex justify-end md:col-span-2 lg:col-span-2 xl:col-span-1">
+                    <button class="border border-slate-400 hover:bg-sky-50 hover:text-sky-700 px-4 py-2 rounded-md shadow shadow-sky-100 focus:border-sky-600 focus:ring-sky-600 focus:ring-1 text-slate-700 text-sm font-medium whitespace-nowrap transition-all motion-reduce:transition-none" title="Filter scans"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                aria-hidden="true" class="w-4 h-4 inline-block">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75">
+                                </path>
+                            </svg> Filters </span></button>
+                </div>
+                <div class="basis-full h-0 col-span-full"></div>
+            </div>
+            <div class="mt-4">
+                <div class="border-2 border-slate-200 border-dashed h-full w-full rounded p-8 flex justify-center items-center">
+                    <p class="text-sm text-slate-400 font-medium">No data to display</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

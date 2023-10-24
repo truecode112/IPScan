@@ -1,0 +1,43 @@
+{% load static %}
+
+<header class="sticky top-0 z-50 border-b border-gray-200 bg-white">
+    <nav class="pr relative z-10 mx-auto flex max-w-7xl items-center py-4 px-6 transition-all motion-reduce:transition-none sm:px-8 md:px-12 lg:py-4"
+        aria-label="Global">
+        <div class="">
+            <a class="navbar-brand" href="{% url 'home' %}"> <img src="{% static 'images/logo.png' %}"
+                    alt="OrionScanLogo" width="250px" srcset=""> </a>
+        </div>
+        <div class="grow"> </div>
+        <div class="hidden sm:flex lg:space-x-4">
+            <a class="border-b-2 border-transparent p-2 text-sm font-medium transition-all hover:border-b-black motion-reduce:transition-none lg:px-4 lg:text-base"
+                href="{% url 'targets' %}">Targets</a>
+            <a class="border-b-2 border-transparent p-2 text-sm font-medium transition-all hover:border-b-black motion-reduce:transition-none lg:px-4 lg:text-base"
+                href="{% url 'scan' %}">Scanners</a>
+            <a class="border-b-2 border-transparent p-2 text-sm font-medium transition-all hover:border-b-black motion-reduce:transition-none lg:px-4 lg:text-base"
+                href="{% url 'pricing' %}">Pricing</a>
+            <a class="border-b-2 border-transparent p-2 text-sm font-medium transition-all hover:border-b-black motion-reduce:transition-none lg:px-4 lg:text-base"
+                href="{% url 'dashboard' %}">Dashboard
+            </a>
+        </div>
+        {% if is_logged_in %}
+        <a class="mr-2 hidden border-b-2 border-transparent p-2 text-sm font-medium transition-all hover:border-b-black hover:bg-white hover:opacity-100 motion-reduce:transition-none sm:block lg:mr-4 lg:px-4 lg:text-base"
+            href="{% url 'logout' %}" >{{ request.user.username }}</a>
+        {% else %}
+        <a class="mr-2 hidden border-b-2 border-transparent p-2 text-sm font-medium transition-all hover:border-b-black hover:bg-white hover:opacity-100 motion-reduce:transition-none sm:block lg:mr-4 lg:px-4 lg:text-base"
+            href="{% url 'login' %}">Log In</a><a
+            class="inline-flex items-center rounded-md border border-gray-200 bg-white px-2 py-2 text-xs font-medium transition-all hover:border-black hover:opacity-100 focus:outline-none focus:ring-offset-2 motion-reduce:transition-none md:px-4 md:py-2 md:text-base"
+            href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+        <div data-headlessui-state="">
+            <button
+                class="relative z-10 ml-2 -mr-2 flex h-8 w-8 items-center justify-center sm:hidden [&amp;:not(:focus-visible)]:focus:outline-none"
+                aria-label="Toggle Navigation" type="button" aria-expanded="false" data-headlessui-state="">
+                <svg aria-hidden="true" class="h-3.5 w-3.5 overflow-visible stroke-gray-800" fill="none"
+                    stroke-width="2" stroke-linecap="round">
+                    <path d="M0 1H14M0 7H14M0 13H14" class="origin-center transition"></path>
+                    <path d="M2 2L12 12M12 2L2 12" class="origin-center transition scale-90 opacity-0"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+</header>

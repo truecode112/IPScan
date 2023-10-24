@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <title>{% block title %}Vulnerability scans, automated for any business{% endblock %}</title>
+    <meta name="description"
+        content="Online automated vulnerability scans for continuous monitoring of websites, servers, and applications. Test our free forever version." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css"
+        integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'assests/static/css/tailwind.css' %}" data-n-g="" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"
+        integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {% block style %}{% endblock %}
+</head>
+
+</head>
+
+<body>
+    <div id="">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div class="hidden opacity-25 fixed inset-0 z-100 bg-black" id="modal_backdrop"></div>
+</body>
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    function openModal(modalID) {
+        $('header').toggleClass('z-50');
+        $(`#${modalID}`).toggleClass('hidden')
+        $(`#${modalID}`).toggleClass('flex')
+        $('#modal_backdrop').toggleClass('hidden')
+        $('#modal_backdrop').toggleClass('flex')
+    }
+    function showToastr(title, message, color) {
+        $.toast({
+            heading: title,
+            text: message,
+            position: 'top-right',
+            stack: false,
+            bgColor: color,
+            textColor: 'white'
+        })
+    }
+</script>
+{% block script %}{% endblock %}
+
+</html>

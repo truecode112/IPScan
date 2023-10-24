@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<main class="flex grow flex-col justify-between">
+    {% include 'intro_section.html' %}
+    {% include 'leverage_section.html' %}
+    {% include 'footer.html' %}
+</main>
+{% endblock %}

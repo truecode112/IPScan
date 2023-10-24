@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} OrionScan | Login {% endblock %}
+{% block script %}
+    <script src="{% static 'assests/static/js/login.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<main class="flex grow flex-col justify-between">
+    <div class="bg-white">
+        {% include 'login_content.html' %}
+        {% include 'footer.html' %}
+    </div>
+</main>
+<script>
+    loginUrl = "{% url 'signup:loginWithEmail' %}"
+</script>
+
+{% endblock %}

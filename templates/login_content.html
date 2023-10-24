@@ -1,0 +1,178 @@
+{% load socialaccount %}
+{% load static %}
+
+<div class="relative mt-8 max-w-full grow bg-gradient-to-b from-white to-sky-100/30 selection:bg-teal-100 sm:mt-16">
+    <div class="relative mx-auto max-w-7xl px-6 sm:px-8 md:px-12">
+        <div class="grid grid-cols-12">
+            <div
+                class="z-10 col-span-12 flex items-center justify-center rounded-lg border border-slate-300/50 bg-white p-8 shadow sm:col-span-6 sm:p-8 lg:p-16 xl:col-span-5 xl:col-start-2">
+                <div>
+                    <h2 class="mb-3 text-2xl font-bold tracking-tight text-sky-700 md:mb-6 md:text-3xl">Get
+                        Started</h2>
+                    <p class="mb-4 text-sm md:mb-8 md:text-base"><span class="font-future font-bold">OrionScan</span> is
+                        100% read-only, and will never make any modifications to your servers.</p>
+                    <div class="flex flex-col">
+                        {% csrf_token %}
+                        <label class="mb-2 block text-sm font-bold md:text-base md:font-medium">Sign in with
+                            email</label>
+                        <input type="email" id="email"
+                            class="mb-4 block h-12 max-w-full rounded-lg border border-slate-400 pl-4 font-mono shadow focus:border-black"
+                            placeholder="Email" value="" />
+                        <label class="mb-2 block text-sm font-bold md:text-base md:font-medium">Password</label>
+                        <input type="password" id="password"
+                            class="mb-4 block h-12 max-w-full rounded-lg border border-slate-400 pl-4 font-mono shadow focus:border-black"
+                            placeholder="Password" value="" />
+                        <button id="loginWithEmailButton" onclick="loginWithEmail()"
+                            class="flex items-center justify-between rounded-lg p-3 sm:p-4 font-bold text-white shadow transition-all motion-reduce:transition-none  whitespace-nowrap bg-gray-800/90 hover:bg-gray-700/80 hover:shadow-lg"><span></span><span><svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" aria-hidden="true"
+                                    class="mr-2 inline-block h-6 w-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244">
+                                    </path>
+                                </svg>Log in</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true" class="inline-block h-6 w-6">
+                                <path fill-rule="evenodd"
+                                    d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <button id="emailLoginLoadingButton"
+                            class="hidden flex items-center justify-between rounded-lg p-3 sm:p-4 font-bold text-white shadow transition-all motion-reduce:transition-none  whitespace-nowrap bg-gray-800/90 hover:bg-gray-700/80 hover:shadow-lg"><svg
+                                class="mr-2 inline h-8 w-8 animate-spin grow fill-gray-500 text-gray-200"
+                                viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                    fill="currentColor"></path>
+                                <path
+                                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                    fill="currentFill"></path>
+                            </svg><span class="sr-only">Loading...</span></button>
+                        </div>
+                </div>
+            </div>
+            <div
+                class="grid-col-1 col-span-12 mx-2 -mt-2 grid gap-4 rounded-b-lg border border-slate-300/50 bg-gray-100/50 p-4 pt-6 text-sm backdrop-blur-sm sm:col-span-6 sm:mx-0 sm:my-6 sm:-ml-2 sm:p-6 sm:pl-8 md:my-8 md:-ml-4 md:rounded-lg md:p-8 md:pl-12 md:text-base lg:-ml-4 lg:p-12 lg:pl-16 xl:col-span-5">
+                <a href="#"
+                    class="flex cursor-pointer items-center whitespace-nowrap rounded-md border border-slate-400/50 bg-white p-2.5 font-medium shadow-sm transition-all hover:border-gray-600/50 hover:shadow-md motion-reduce:transition-none sm:p-3 md:p-3.5 lg:p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" class="h-7 w-7">
+                        <path fill="#f3f3f3" d="M0 0h23v23H0z"></path>
+                        <path fill="#f35325" d="M1 1h10v10H1z"></path>
+                        <path fill="#81bc06" d="M12 1h10v10H12z"></path>
+                        <path fill="#05a6f0" d="M1 12h10v10H1z"></path>
+                        <path fill="#ffba08" d="M12 12h10v10H12z"></path>
+                    </svg>
+                    <p class="ml-4 block grow">Sign in
+                        <!-- -->with
+                        <!-- -->Microsoft
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                        class="h-6 w-6">
+                        <path fill-rule="evenodd"
+                            d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="{% provider_login_url 'google' %}"
+                    class="flex cursor-pointer items-center whitespace-nowrap rounded-md border border-slate-400/50 bg-white p-2.5 font-medium shadow-sm transition-all hover:border-gray-600/50 hover:shadow-md motion-reduce:transition-none sm:p-3 md:p-3.5 lg:p-4">
+                    <svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        class="h-7 w-7">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="google_g">
+                                <g id="button-bg-copy">
+                                    <g id="use4559" fill="#FFFFFF">
+                                        <rect id="path-3" x="0" y="0" width="24" height="24" rx="1"></rect>
+                                    </g>
+                                    <g id="use4561">
+                                        <rect id="path-3" x="0" y="0" width="24" height="24" rx="1"></rect>
+                                    </g>
+                                    <g id="use4563">
+                                        <rect id="path-3" x="0" y="0" width="24" height="24" rx="1"></rect>
+                                    </g>
+                                    <g id="use4565">
+                                        <rect id="path-3" x="0" y="0" width="24" height="24" rx="1"></rect>
+                                    </g>
+                                </g>
+                                <g id="logo_googleg_48dp" transform="translate(3.000000, 3.000000)">
+                                    <path
+                                        d="M17.64,9.2045455 C17.64,8.5663636 17.58273,7.9527273 17.476364,7.3636364 L9,7.3636364 L9,10.845 L13.843636,10.845 C13.635,11.97 13.000909,12.923182 12.047727,13.561364 L12.047727,15.819546 L14.956364,15.819546 C16.658182,14.252727 17.64,11.945455 17.64,9.2045455 L17.64,9.2045455 Z"
+                                        id="Shape" fill="#4285F4" fill-rule="nonzero"></path>
+                                    <path
+                                        d="M9,18 C11.43,18 13.467273,17.194091 14.956364,15.819546 L12.047727,13.561364 C11.241818,14.101364 10.210909,14.420455 9,14.420455 C6.6559091,14.420455 4.6718182,12.837273 3.9640909,10.71 L0.95727273,10.71 L0.95727273,13.041818 C2.4381818,15.983182 5.4818182,18 9,18 L9,18 Z"
+                                        id="path4569" fill="#34A853" fill-rule="nonzero"></path>
+                                    <path
+                                        d="M3.9640909,10.71 C3.7840909,10.17 3.6818182,9.5931818 3.6818182,9 C3.6818182,8.4068182 3.7840909,7.83 3.9640909,7.29 L3.9640909,4.9581818 L0.95727273,4.9581818 C0.34772727,6.1731818 0,7.5477273 0,9 C0,10.452273 0.34772727,11.826818 0.95727273,13.041818 L3.9640909,10.71 L3.9640909,10.71 Z"
+                                        id="path4571" fill="#FBBC05" fill-rule="nonzero"></path>
+                                    <path
+                                        d="M9,3.5795455 C10.321364,3.5795455 11.507727,4.0336364 12.440455,4.9254546 L15.021818,2.3440909 C13.463182,0.89181818 11.425909,0 9,0 C5.4818182,0 2.4381818,2.0168182 0.95727273,4.9581818 L3.9640909,7.29 C4.6718182,5.1627273 6.6559091,3.5795455 9,3.5795455 L9,3.5795455 Z"
+                                        id="path4573" fill="#EA4335" fill-rule="nonzero"></path>
+                                    <polygon id="path4575" points="0 0 18 0 18 18 0 18"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    <p class="ml-4 block grow">Sign in
+                        <!-- -->with
+                        <!-- -->Google
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                        class="h-6 w-6">
+                        <path fill-rule="evenodd"
+                            d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="{% provider_login_url 'github' %}"
+                    class="flex cursor-pointer items-center whitespace-nowrap rounded-md border border-slate-400/50 bg-white p-2.5 font-medium shadow-sm transition-all hover:border-gray-600/50 hover:shadow-md motion-reduce:transition-none sm:p-3 md:p-3.5 lg:p-4">
+                    <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" class="h-7 w-7">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"
+                            transform="scale(64)" fill="#1B1F23"></path>
+                    </svg>
+                    <p class="ml-4 block grow">Sign in
+                        <!-- -->with
+                        <!-- -->Github
+                    </p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                        class="h-6 w-6">
+                        <path fill-rule="evenodd"
+                            d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <div class="grid grid-cols-1 gap-3 border-t-2 border-slate-200 md:gap-4">
+                    <a href="#"
+                        class="mt-4 flex cursor-pointer items-center whitespace-nowrap rounded-md border border-slate-400/50 bg-white/75 p-3 text-xs font-medium shadow-sm transition-all hover:border-gray-600/50 hover:shadow-md motion-reduce:transition-none md:mt-4 md:p-3 md:text-sm">
+                        <svg width="100%" height="100%" viewBox="0 0 29 29" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            class="h-4 w-4 md:h-5 md:w-5 lg:h-6 lg:w-6">
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="Group" fill="#0069FF" fill-rule="nonzero">
+                                    <g id="digitalocean">
+                                        <path
+                                            d="M14.4942,23.4326 C20.4514,23.4326 25.0575,17.5848 22.7834,11.3736 C21.9409,9.073 20.0904,7.2381 17.7708,6.403 C11.5088,4.1496 5.6144,8.7165 5.6135,14.6237 C5.6135,14.6237 3.74233333,14.6241667 0,14.6251 C0,5.2123 9.1687,-2.1167 19.1138,0.9624 C23.4597,2.3081 26.9131,5.7332 28.2699,10.0434 C31.3742,19.9068 23.985,29 14.4942,29 L14.4942,23.4326 Z"
+                                            id="Shape"></path>
+                                        <path
+                                            d="M8.9103,23.4468 L8.9103,17.8978 C8.9103,17.8978 10.7756333,17.8974333 14.5063,17.8967 C14.5067,17.8967 14.507,19.7467333 14.5072,23.4468 L8.9103,23.4468 Z M4.6105,27.7118 L4.6093,23.4468 L8.9102,23.4468 L8.9102,27.7106 L4.6105,27.7118 Z M1.0088,23.4468 C1.0078,23.4468 1.00693333,22.2556 1.0062,19.8732 C1.0062,19.8732 2.2074,19.8723667 4.6098,19.8707 C4.6108,19.8707 4.6117,21.0627333 4.6125,23.4468 L1.0088,23.4468 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        <p class="ml-1 block grow md:ml-2 lg:ml-4">DigitalOcean</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                            aria-hidden="true" class="h-4 w-4 sm:hidden md:block lg:h-5 lg:w-5">
+                            <path fill-rule="evenodd"
+                                d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relative mx-auto max-w-7xl px-6 sm:px-8 md:px-12 my-8 text-gray-800/70 sm:my-32 sm:mt-32 md:max-w-5xl">
+    </div>
+</div>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} OrionScan | Scan {% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assests/static/css/style.css' %}" data-n-g="" />
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="flex flex-col w-full h-full grow">
+    {% include 'scan_content.html' %}
+    <footer class="text-xs opacity-50 text-center mt-16 py-4">© OrionScan, LLC. 2019 - 2023. All Rights Reserved | <a
+            href="#">Terms &amp; Policies</a></footer>
+</div>
+{% endblock %}
